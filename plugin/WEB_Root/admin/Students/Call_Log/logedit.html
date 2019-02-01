@@ -1,5 +1,5 @@
 ﻿<form id="logForm" name="logForm">
-    <div><h3>Incident Information</h3></div>
+    <div><h3>Call Log</h3></div>
     <fieldset>
         <div>
             <label>Log Date/Time/Author</label>
@@ -9,154 +9,17 @@
             <input type="hidden" name="[LOG]Entry_Author" value="~[x:username]" />
         </div>
         <div>
-            <label>Duration (Minutes)</label>
-            <input type="text" name="[LOG.U_LOG_RSPE]Duration" value="" size="5" required /> <font color="red">*</font>
+            <label>Subject</label>
+            <input type="text" name="[LOG]Subject" value="" size="50" required /> <font color="red">*</font>
         </div>
         <div>
-            <label>Log Type</label>
-            <select name="[LOG]Subtype" required>
-                <option></option>
-                <option value="R">(R) Restraint</option>
-                <option value="S">(S) Seclusion</option>
-                <option value="PE">(PE) Physical Escort</option>
-            </select> <font color="red">*</font>
-        </div>
-        <div>
-            <label>Brief Description (Title)</label>
-            <input type="text" name="[LOG.U_LOG_RSPE]Title" value="" size="50" required /> <font color="red">*</font>
-        </div>
-        <div>
-            <label>Special Education at the time of incident</label>
-            <select id="sped" name="[LOG.U_LOG_RSPE]Sped">
-                <option value="0">No</option>
-                <option value="1">Yes</option>
-            </select> <font color="red">*</font>
-            <label class="disability">Disability <font color="red">*</font></label>
-            <select class="disability" id="akDisability" name="[LOG.U_LOG_RSPE]AK_Disability">
-                <option value=""></option>
-                <option value="00">00 - Not receiving Special Education Services</option>
-                <option value="02">02 - Cognitive Impairments</option>
-                <option value="03">03 - Hearing Impaired</option>
-                <option value="04">04 - Speech or Language Impairments</option>
-                <option value="05">05 - Visual Impairments</option>
-                <option value="06">06 - Emotional Disturbance</option>
-                <option value="07">07 - Orthopedic Impairments</option>
-                <option value="08">08 - Other Health Impairments</option>
-                <option value="09">09 - Specific Learning Disabilities</option>
-                <option value="10">10 - Deaf-Blindness</option>
-                <option value="11">11 - Multiple Disabilities</option>
-                <option value="12">12 - Autism</option>
-                <option value="13">13 - Traumatic Brain Injury</option>
-                <option value="14">14 - Developmentally Delayed</option>
-                <option value="15">15 - Exited Special Education within last year</option>
-                <option value="16">16 - Exited Special Education 1 to 2 years ago</option>
-            </select>
-        </div>
-        <div>
-            <label>Staff Involved (1 Staff Member Required)</label>
-            <table>
-                <tr>
-                    <td>
-                        <input type="text" name="[LOG.U_LOG_RSPE]Personnel1" value="" size="75" placeholder="Staff Name" required /> <font color="red">*</font>
-                        Trained in Crisis Intervention:
-                        <select name="[LOG.U_LOG_RSPE]Personnel1_Trained">
-                            <option value="0">No</option>
-                            <option value="1">Yes</option>
-                        </select> <font color="red">*</font>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="text" name="[LOG.U_LOG_RSPE]Personnel2" value="" size="75" placeholder="Staff Name" />
-                        Trained in Crisis Intervention:
-                        <select name="[LOG.U_LOG_RSPE]Personnel2_Trained">
-                            <option></option>
-                            <option value="0">No</option>
-                            <option value="1">Yes</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="text" name="[LOG.U_LOG_RSPE]Personnel3" value="" size="75" placeholder="Staff Name" />
-                        Trained in Crisis Intervention:
-                        <select name="[LOG.U_LOG_RSPE]Personnel3_Trained">
-                            <option></option>
-                            <option value="0">No</option>
-                            <option value="1">Yes</option>
-                        </select>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <div>
-            <label>Pre-Incident Activity Description (*Include adult efforts/strategies to deescalate situation.) <font color="red">*</font></label>
-            <textarea name="[LOG.U_LOG_RSPE]Pre_Incident_Activity" rows="6" cols="120" required></textarea>
-        </div>
-        <div>
-            <label>Incident Description <font color="red">*</font></label>
-            <textarea name="[LOG.U_LOG_RSPE]Incident_Activity" rows="6" cols="120" required></textarea>
-        </div>
-        <div>
-            <label>Student Injury (Description)</label>
-            <input type="text" name="[LOG.U_LOG_RSPE]Student_Injury" value="" size="50">
-        </div>
-        <div>
-            <label>Staff Injury (Description)</label>
-            <input type="text" name="[LOG.U_LOG_RSPE]Staff_Injury" value="" size="50">
-        </div>
-        <div>
-            <label>Action Taken</label>
-            <select name="[LOG.U_LOG_RSPE]CPI_Action">
-                <option></option>
-                <option value="Child Control">Child Control</option>
-                <option value="Team Control">Team Control</option>
-                <option value="Transport">Transport</option>
-            </select>
+            <label>Log Entry<font color="red">*</font></label>
+            <textarea name="[LOG]Entry" rows="6" cols="120" required></textarea>
         </div>
     </fieldset>
-    <div><h3>Follow-Up Information</h3></div>
-    <fieldset>
-        <div>
-            <label>Post-Incident Description</label>
-            <textarea name="[LOG.U_LOG_RSPE]Post_Incident_Activity" rows="6" cols="120"></textarea>
-        </div>
-        <div>
-            <label>Further Action Taken</label>
-            <textarea name="[LOG.U_LOG_RSPE]Further_Action" rows="6" cols="120"></textarea>
-        </div>
-        <div>
-            <label>Follow-up Communication with Student and Parents</label>
-            <table>
-                <tr>
-                    <td class="bold">Date</td>
-                    <td><input type="text" name="[LOG.U_LOG_RSPE]Follow_Up_Date" value="" size="10" class="psDateWidget"></td>
-                </tr>
-                <tr>
-                    <td class="bold">Primary Communication</td>
-                    <td><input type="text" name="[LOG.U_LOG_RSPE]Communication_Type1" value="" size="75"></td>
-                </tr>
-                <tr>
-                    <td class="bold">Additional Communication</td>
-                    <td><input type="text" name="[LOG.U_LOG_RSPE]Communication_Type2" value="" size="75"></td>
-                </tr>
-            </table>
-        </div>
-        <div>
-            <label>Staff Review of Incident Summary</label>
-            <textarea name="[LOG.U_LOG_RSPE]Staff_Review" rows="6" cols="120"></textarea>
-        </div>
-        <div>
-            <label>Recommendations</label>
-            <textarea name="[LOG.U_LOG_RSPE]Recommendations" rows="6" cols="120"></textarea>
-        </div>
-    </fieldset>
-    <input type="hidden" id="Grade_level" name="[LOG.U_LOG_RSPE]Grade_Level" value="~([01]grade_level)">
-    <input type="hidden" id="yearid" name="[LOG.U_LOG_RSPE]YearId" value="~(curyearid)" />
     <input type="hidden" name="[LOG]logtypeid" value="{{Log[0].ID}}">
     <input type="hidden" name="[LOG]studentid" value="~(curstudid)">
     <input type="hidden" id="schoolID" name="[LOG]schoolid" value="">
-    <input type="hidden" name="[LOG]subject" value="RSTP - ~([01]student_number)">
     <input type="hidden" name="ac" value="prim">
 </form>
     <div class="button-row">
@@ -172,22 +35,7 @@
     <input type="hidden" name="DD-LOG.ID:~([LOG]id)" value="1">
 </form>
 <script>
-    var db = ~(gpv.db;num);
-    if (db && db > 0) {
-        $j('.disability').show();
-        $j('#sped').val('1');
-        $j('#akDisability').val('~(gpv.db)');
-    } else {
-        $j('.disability').hide();
-    }
-
-    var newLog = ~(gpv.new;num);
-    if (newLog == 1) {
-        var yearid = ~(curyearid);
-        var currYear = (yearid + 1990) + "-" + (yearid + 1991);
-        $j('#newRecord').html('Please be aware that the current Log wil be saved for the ' + currYear + ' school year.');
-    }
-
+    
     if (!$j('#schoolID').val() || $j('#schoolID').val() < 1) {
         $j('#schoolID').val($j('#schoolid').html());
     }
@@ -196,12 +44,4 @@
         $j('#Grade_level').val($j('#grade_level').html());
     }
 
-    $j('#sped').change(function () {
-        if ($j(this).val() == 1) {
-            $j('.disability').show();
-        } else {
-            $j('.disability').hide();
-        }
-
-    });
 </script>

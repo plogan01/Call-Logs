@@ -1,25 +1,25 @@
 [
 	~[tlist_sql;
-    Select
-      l.id,
-      l.dcid,
-      l.studentid,
-      l.entry_date,
-      l.entry_author,
-      rspe.title,
-      l.subtype
-FROM Log l
-JOIN U_LOG_RSPE rspe
-ON l.dcid = rspe.LOGDCID
-WHERE l.studentid = ~(gpv.id) AND l.logtypeid = ~(gpv.cat)]
+    SELECT
+        l.id,
+        l.entry_time,
+        l.entry_date,
+        l.entry_author,
+        l.entry,
+        s.abbreviation,
+        l.subject
+    FROM LOG l 
+    JOIN SCHOOLS s
+        ON l.schoolid = s.school_number
+    WHERE l.studentid = ~(gpv.id) AND l.logtypeid = ~(gpv.cat)]
   {
-    "id": "~(id:json)",
-    "dcid": "~(dcid:json)",
-    "studentid": "~(studentid:json)",
-    "date": "~(entry_date;d)",
-    "author": "~(author;json)",
-    "title": "~(title:json)",
-    "subtype": "~(subtype:json)"
+    "id": "~(id;json)",
+    "entry_time": "~(entry_time;json)",
+    "entry_date": "~(entry_date;d)",
+    "entry_author": "~(entry_author;json)",
+    "entry": "~(entry;json)",
+    "abbreviation": "~(abbreviation;json)",
+    "subject": "~(subject;json)"
   },
 	[/tlist_sql]
 	{}

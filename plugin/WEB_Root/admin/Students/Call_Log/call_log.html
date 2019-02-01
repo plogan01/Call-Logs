@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Restraint/Seclusion/Physical Escort</title>
+        <title>Call Logs</title>
         ~[wc:commonscripts]
         <link href="/images/css/screen.css" rel="stylesheet" media="screen">
         <link href="/images/css/print.css" rel="stylesheet" media="print">
     </head>
-    <body ng-controller="rspeController" data-require-path="/admin/students/rspe/scripts/RSPESvc.js" data-module-name="rspeApp">
-        ~[wc:admin_header_frame_css]<!-- breadcrumb start --><a href="/admin/home.html" target="_top">Start Page</a> &gt; <a href="home.html?selectstudent=nosearch" target="_top">Student Selection</a> &gt; Suspensions & Expulsions<!-- breadcrumb end -->~[wc:admin_navigation_frame_css]
+    <body ng-controller="logController" data-require-path="/admin/students/call_log/scripts/logSvc.js" data-module-name="logApp">
+        ~[wc:admin_header_frame_css]<!-- breadcrumb start --><a href="/admin/home.html" target="_top">Start Page</a> &gt; <a href="home.html?selectstudent=nosearch" target="_top">Student Selection</a> &gt;  Call Logs<!-- breadcrumb end -->~[wc:admin_navigation_frame_css]
 
         ~[wc:title_student_begin_css]Restraint/Seclusion/Physical Escort (RSPE)~[wc:title_student_end_css]
 
@@ -16,26 +16,22 @@
             <table class="grid">
                 <tr>
                     <th>Date</th>
-                    <th>Type</th>
-                    <th>Title</th>
+                    <th>Subject</th>
                     <th>Author</th>
-                    <th><a class="button" title="New" href="" ng-click="openDialog(-1, 'logedit.html?new=1&db=~([STUDENTS.S_AK_STU_X]Disability_Code)&frn=008');">New Entry</a></th>
+                    <th><a class="button" title="New" href="" ng-click="openDialog(-1, 'logedit.html?new=1&frn=008');">New Entry</a></th>
                 </tr>
                 <tr ng-repeat="log in StudentLogs">
-                    <td>{{log.date}}</td>
-                    <td>{{log.subtype}}</td>
-                    <td>{{log.title}}</td>
-                    <td>{{log.author}}</td>
+                    <td>{{log.entry_date}}</td>
+                    <td>{{log.subject}}</td>
+                    <td>{{log.entry_author}}</td>
                     <td>
-                        <a class="button" title="Edit" href="" ng-click="openDialog(log.dcid, 'logedit.html?new=0&db=~([STUDENTS.S_AK_STU_X]Disability_Code)&frn=008');">Edit</a>
-                        <a class="button" title="Print" href="/admin/students/RSPE/directprint.html?ID={{log.id}}&DCID=~([Students]ID)" target="_blank">Print</a>
+                        <a class="button" title="Edit" href="" ng-click="openDialog(log.id, 'logedit.html?new=0&frn=008');">Edit</a>
                     </td>
                 </tr>
             </table>
         </div>
         <br>
-        <span class="hidden" id="dcid">~([Students]ID)</span>
-        <span class="hidden" id="grade_level">~([Students]Grade_level)</span>
+        <span class="hidden" id="id">~([Students]ID)</span>
         <span class="hidden" id="schoolid">~([Students]schoolid)</span>
         <!-- end of content of bounding box -->
         ~[wc:admin_footer_frame_css]
