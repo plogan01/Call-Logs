@@ -1,0 +1,5 @@
+<script>
+  $j('#std_administration').prepend(
+      ('<li><a href="/admin/students/call_log/call_log.html?frn=~(studentfrn)">Call Log</a></li>')
+  );
+</script>

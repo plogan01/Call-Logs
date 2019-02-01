@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>RSPE Report</title>
+    ~[wc:commonscripts]
+    <style>
+
+        body {
+            color: black;
+            font-family: "Arial, Helvetica, sans-serif";
+            font-size: 10px;
+            box-sizing: border-box;
+        }
+
+        .row::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        .leftcont {
+            float: left;
+        }
+
+        .rightcont {
+            float: right;
+        }
+
+        .midcont {
+            margin: auto;
+            width: 50%;
+            text-align: center;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+
+        th {
+            padding-top: 10px;
+            padding-bottom: 10px;
+            text-align: center;
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .sub {
+            font-size: 8px;
+            color: darkslategray;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media print {
+            .no-print, .no-print * {
+                display: none !important;
+            }
+        }
+
+    </style>
+</head>
+
+<body ng-controller="printController" data-require-path="/admin/students/rspe/scripts/print.js" data-module-name="printApp">
+    <div class="row">
+        <img class="leftcont" src="/images/district-logos/districtlogo.png" height="55" />
+        <div class="midcont">
+
+            <h2>~[schoolordistrictname]</h2>
+            <h3>Restraint, Seclusion, and Physical Escort Report</h3>
+        </div>
+        <button type="button" class="no-print rightcont" onclick="print();">Print</button>
+    </div>
+
+    <table>
+        <tr>
+            <th colspan="12" class="top">STUDENT INFORMATION</th>
+        </tr>
+
+        <tr>
+            <td colspan="4">
+                <span class="sub">Student<br /></span>
+                {{data.name}}
+            </td>
+            <td>
+                <span class="sub">Birthdate<br /></span>
+                {{data.dob}}
+            </td>
+            <td colspan="2">
+                <span class="sub">Age<br /></span>
+                {{data.age}}
+            </td>
+            <td>
+                <span class="sub">Gender<br /></span>
+                {{data.gender}}
+            </td>
+            <td>
+                <span class="sub">Grade<br /></span>
+                {{data.grade_level}}
+            </td>
+            <td>
+                <span class="sub">Race<br /></span>
+                {{data.ethnicity}}
+            </td>
+            <td colspan="2">
+                <span class="sub">Student Number<br /></span>
+                {{data.student_number}}
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="3">
+                <span class="sub">Physical Street<br /></span>
+                {{data.street}}
+            </td>
+            <td colspan="3">
+                <span class="sub">Mailing Street<br /></span>
+                {{data.mailing_street}}
+            </td>
+            <td colspan="2">
+                <span class="sub">City<br /></span>
+                {{data.city}}
+            </td>
+            <td>
+                <span class="sub">Zip<br /></span>
+                {{data.zip}}
+            </td>
+            <td colspan="3">
+                <span class="sub">School<br /></span>
+                {{data.schoolid}} - {{data.school}}
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="5">
+                <span class="sub">Guardian 1<br /></span>
+                {{data.father}} {{data.father_phone}}
+            </td>
+            <td colspan="5">
+                <span class="sub">Guardian 2<br /></span>
+                {{data.mother}} {{data.mother_phone}}
+            </td>
+            <td colspan="2">
+                <span class="sub">IDEA<br /></span>
+                {{data.IDEA}} - {{data.disability}}
+            </td>
+        </tr>
+
+        <tr>
+            <th colspan="12">INCIDENT INFORMATION</th>
+        </tr>
+
+        <tr>
+            <td colspan="3">
+                <span class="sub">Date<br /></span>
+                {{data.entry_date}}
+            </td>
+            <td colspan="3">
+                <span class="sub">Time<br /></span>
+                {{data.entry_time}}
+            </td>
+            <td colspan="3">
+                <span class="sub">Type<br /></span>
+                {{data.subtype}}
+            </td>
+            <td colspan="3">
+                <span class="sub">Duration<br /></span>
+                {{data.duration}} Minutes
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="3">
+                <span class="sub">Personnel Involved<br /></span>
+                {{data.personnel1}}
+            </td>
+            <td>
+                <span class="sub">Trained<br /></span>
+                {{data.personnel1_trained}}
+            </td>
+            <td colspan="3">
+                <span class="sub">Personnel Involved<br /></span>
+                {{data.personnel2}}
+            </td>
+            <td>
+                <span class="sub">Trained<br /></span>
+                {{data.personnel2_trained}}
+            </td>
+            <td colspan="3">
+                <span class="sub">Personnel Involved<br /></span>
+                {{data.personnel3}}
+            </td>
+            <td>
+                <span class="sub">Trained<br /></span>
+                {{data.personnel3_trained}}
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="12">
+                <span class="sub">Description of Activity that preceeded incident:<br /></span>
+                {{data.pre_incident_activity}}
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="12">
+                <span class="sub">Description of Incident:<br /></span>
+                {{data.incident_activity}}
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="12">
+                <span class="sub">Description of Student Injury:<br /></span>
+                {{data.student_injury}}
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="12">
+                <span class="sub">Description of Staff Injury:<br /></span>
+                {{data.staff_injury}}
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="12">
+                <span class="sub">Description of Activity following Incident :<br /></span>
+                {{data.post_incident_activity}}
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="12">
+                <span class="sub">Further action taken:<br /></span>
+                {{data.further_action}}
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="12">
+                <span class="sub">Staff Review of Incident Summary:<br /></span>
+                {{data.staff_review}}
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2">
+                <span class="sub">Follow-up communication with Student/Parents:<br /></span>
+                {{data.follow_up_date}}
+            </td>
+
+            <td colspan="5">
+                <span class="sub">Type:<br /></span>
+                {{data.communication_type1}}
+            </td>
+            <td colspan="5">
+                <span class="sub">Type:<br /></span>
+                {{data.communication_type2}}
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="12">
+                <span class="sub">Recommendations:<br /></span>
+                {{data.recommendations}}
+            </td>
+        </tr>
+
+    </table>
+    
+    <div class="hidden" id="DCID">~(gpv.DCID)</div>
+    <div class="hidden" id="ID">~(gpv.ID)</div>
+</body>
+</html>

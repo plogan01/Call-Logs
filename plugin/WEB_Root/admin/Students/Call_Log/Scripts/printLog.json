@@ -1,0 +1,132 @@
+[
+	~[tlist_sql;
+    Select
+    s.student_number,
+    s.first_name || ' ' || s.middle_name || ' ' || s.last_name AS name,
+    s.dob,
+    s.gender,
+    rspe.grade_level,
+    s.ethnicity,
+    s.street,
+    s.mailing_street,
+    s.city,
+    s.state,
+    s.zip,
+    l.schoolid,
+    sc.name,
+    s.father,
+    scf.father_home_phone,
+    s.mother,
+    scf.mother_home_phone,
+    CASE WHEN (rspe.ak_disability > 0 AND rspe.ak_disability < 15) THEN 'Yes' ELSE 'No' END AS IDEA,
+    CASE 
+        WHEN rspe.ak_disability = 2 THEN '02 - Cognitive Impairments'
+        WHEN rspe.ak_disability = 3 THEN '03 - Hearing Impaired'
+        WHEN rspe.ak_disability = 4 THEN '04 - Speech or Language Impairments'
+        WHEN rspe.ak_disability = 5 THEN '05 - Visual Impairments'
+        WHEN rspe.ak_disability = 6 THEN '06 - Emotional Disturbance'
+        WHEN rspe.ak_disability = 7 THEN '07 - Orthopedic Impairments'
+        WHEN rspe.ak_disability = 8 THEN '08 - Other Health Impairments'
+        WHEN rspe.ak_disability = 9 THEN '09 - Specific Learning Disabilities'
+        WHEN rspe.ak_disability = 10 THEN '10 - Deaf-Blindness'
+        WHEN rspe.ak_disability = 11 THEN '11 - Multiple Disabilities'
+        WHEN rspe.ak_disability = 12 THEN '12 - Autism'
+        WHEN rspe.ak_disability = 13 THEN '13 - Traumatic Brain Injury'
+        WHEN rspe.ak_disability = 14 THEN '14 - Developmentally Delayed'
+        WHEN rspe.ak_disability = 15 THEN '15 - Exited Special Education within last year'
+        WHEN rspe.ak_disability = 16 THEN '16 - Exited Special Education 1 to 2 years ago' 
+        ELSE '00 - Not receiving Special Education Services'
+    END AS Disability,
+    l.entry_date,
+    l.entry_time,
+    CASE 
+        WHEN l.subtype = 'S' THEN 'Seclusion'
+        WHEN l.subtype = 'R' THEN 'Restraint'
+        WHEN l.subtype = 'PE' THEN 'Physical Escort'
+        ELSE 'Not Selected'
+    END AS subtype,
+    rspe.duration,
+    rspe.personnel1,
+    CASE 
+        WHEN rspe.personnel1 IS NOT NULL THEN
+            CASE WHEN rspe.personnel1_trained = 1 THEN 'YES' ELSE 'NO' END
+        ELSE null 
+    END AS personnel1_trained,
+    rspe.personnel2,
+    CASE 
+        WHEN rspe.personnel2 IS NOT NULL THEN
+            CASE WHEN rspe.personnel2_trained = 1 THEN 'YES' ELSE 'NO' END
+        ELSE null 
+    END AS personnel2_trained,
+    rspe.personnel3,
+    CASE 
+        WHEN rspe.personnel3 IS NOT NULL THEN
+            CASE WHEN rspe.personnel3_trained = 1 THEN 'YES' ELSE 'NO' END
+        ELSE null 
+    END AS personnel3_trained,
+    rspe.pre_incident_activity,
+    rspe.incident_activity,
+    rspe.student_injury,
+    rspe.staff_injury,
+    rspe.post_incident_activity,
+    rspe.further_action,
+    rspe.staff_review,
+    rspe.follow_up_date,
+    rspe.communication_type1,
+    rspe.communication_type2,
+    rspe.recommendations
+  FROM Log l
+    JOIN U_LOG_RSPE rspe
+      ON l.dcid = rspe.LOGDCID
+    JOIN Students s
+      ON l.studentid = s.id
+    JOIN StudentCoreFields scf
+        ON s.dcid = scf.studentsdcid
+    LEFT OUTER JOIN Schools sc
+        ON l.schoolid = sc.school_number
+  WHERE l.studentid = ~(gpv.DCID) AND l.ID = ~(gpv.ID)]
+  {
+    "student_number": "~(student_number;json)",
+    "name": "~(name;json)",
+    "dob": "~(dob;d)",
+    "gender": "~(gender;json)",
+    "grade_level": "~(grade_level;json)",
+    "ethnicity": "~(ethnicity;json)",
+    "street": "~(street;json)",
+    "mailing_street": "~(mailing_street;json)",
+    "city": "~(city;json)",
+    "state": "~(state;json)",
+    "zip": "~(zip;json)",
+    "schoolid": "~(schoolid;json)",
+    "school": "~(school;json)",
+    "father": "~(father;json)",
+    "father_phone": "~(father_phone;json)",
+    "mother": "~(mother;json)",
+    "mother_phone": "~(mother_phone;json)",
+    "IDEA": "~(IDEA;json)",
+    "disability": "~(disability;json)",
+    "entry_date": "~(entry_date;d)",
+    "entry_time": "~(entry_time;json)",
+    "subtype": "~(subtype;json)",
+    "duration": "~(duration;json)",
+    "personnel1": "~(personnel1;json)",
+    "personnel1_trained": "~(personnel1_trained;json)",
+    "personnel2": "~(personnel2;json)",
+    "personnel2_trained": "~(personnel2_trained;json)",
+    "personnel3": "~(personnel3;json)",
+    "personnel3_trained": "~(personnel3_trained;json)",
+    "pre_incident_activity": "~(pre_incident_activity;json)",
+    "incident_activity": "~(incident_activity;json)",
+    "student_injury": "~(student_injury;json)",
+    "staff_injury": "~(staff_injury;json)",
+    "post_incident_activity": "~(post_incident_activity;json)",
+    "further_action": "~(further_action;json)",
+    "staff_review": "~(staff_review;json)",
+    "follow_up_date": "~(follow_up_date;d)",
+    "communication_type1": "~(communication_type1;json)",
+    "communication_type2": "~(communication_type2;json)",
+    "recommendations": "~(recommendations;json)"
+  },
+	[/tlist_sql]
+	{}
+]

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<psExtension xmlns="http://www.powerschool.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.powerschool.com psextension.xsd">
+    <extensionname>U_LOG_RSPE</extensionname>
+    <extendedTable coreTable="LOG" dbTableName="U_LOG_RSPE" comment="">
+      <field name="SPED" type="Boolean" />
+      <field name="AK_Disability" type="Integer" />
+      <field name="Grade_Level" type="Integer" />
+      <field name="Title" type="String" length="400" />
+      <field name="Duration" type="Integer" />
+      <field name="Personnel1" type="String" length="1000" />
+      <field name="Personnel1_Trained" type="Boolean" />
+      <field name="Personnel2" type="String" length="1000" />
+      <field name="Personnel2_Trained" type="Boolean" />
+      <field name="Personnel3" type="String" length="1000" />
+      <field name="Personnel3_Trained" type="Boolean" />
+      <field name="Pre_Incident_Activity" type="String" length="4000" />
+      <field name="Incident_Activity" type="String" length="4000" />
+      <field name="Student_Injury" type="String" length="4000" />
+      <field name="Staff_Injury" type="String" length="4000" />
+      <field name="Post_Incident_Activity" type="String" length="4000" />
+      <field name="Further_Action" type="String" length="4000" />
+      <field name="Staff_Review" type="String" length="4000" />
+      <field name="Follow_Up_Date" type="Date" />
+      <field name="Communication_Type1" type="String" length="1000" />
+      <field name="Communication_Type2" type="String" length="1000" />
+      <field name="Recommendations" type="String" length="4000" />
+      <field name="CPI_Action" type="String" length="4000" />
+      <field name="yearid" type="Integer"></field>
+    </extendedTable>
+</psExtension>
