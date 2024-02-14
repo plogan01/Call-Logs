@@ -2,10 +2,13 @@
     <div><h3>Call Log</h3></div>
     <fieldset>
         <div>
-            <label>Log Date/Time/Author</label>
+            <label>Log Date/Time</label>
             <input type="text" name="[LOG]Entry_Date" value="~(f.currentdate)" size="15" class="psDateWidget" required /> <font color="red">*</font>
             <input type="text" name="[LOG]Entry_Time" value="~(f.currenttime)" size="15" class="timeEntry" required /> <font color="red">*</font>
-            By: <input type="text" value="~[x:username]" size="40" readonly />
+        </div>
+        <div>
+            <label>Author</label>
+            <input type="text" value="~[x:username]" size="40" readonly />
             <input type="hidden" name="[LOG]Entry_Author" value="~[x:username]" />
         </div>
         <div>
@@ -17,7 +20,8 @@
             <textarea name="[LOG]Entry" rows="6" cols="120" required></textarea>
         </div>
     </fieldset>
-    <input type="hidden" name="[LOG]logtypeid" value="{{Log[0].ID}}">
+    <input type="hidden" name="rn" value="~(rn)" />
+    <input type="hidden" name="[LOG]logtypeid" value="~(gpv.logTypeId)">
     <input type="hidden" name="[LOG]studentid" value="~(curstudid)">
     <input type="hidden" id="schoolID" name="[LOG]schoolid" value="">
     <input type="hidden" name="ac" value="prim">
@@ -32,11 +36,11 @@
 
 <form id="deleteForm">
     <input type="hidden" name="ac" value="prim" />
-    <input type="hidden" name="DD-LOG.ID:~([LOG]id)" value="1">
+    <input type="hidden" name="DD-LOG.ID:~([LOG]ID)" value="1">
 </form>
 <script>
     
-    if (!$j('#schoolID').val() || $j('#schoolID').val() < 1) {
+    if (!$j('#schoolID').val() || $j('#schoolID').val() == 0) {
         $j('#schoolID').val($j('#schoolid').html());
     }
 

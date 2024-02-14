@@ -5,18 +5,16 @@ define(['angular', 'components/shared/index'], function (angular) {
 
     //This will create a controller which will be used in our app
     logApp.controller('logController', function ($rootScope, $scope, $compile, getService, postService) {
-
+        $scope.studentfrn = '001' + $j('#dcid').val();
         loadingDialog();
 
-        $scope.Log = [];
-
-        getService.getData('/admin/students/call_log/scripts/logCat.json').then(function (retData) {
+        getService.getData('/admin/students/call_log/json/logCat.json').then(function (retData) {
             retData.pop();
-            $scope.Log = retData;
+            $scope.Log = retData[0].ID;
 
             $scope.StudentLogs = [];
 
-            getService.getData('/admin/students/call_log/scripts/call_log.json?id=' + $j('#id').html() + '&cat=' + $scope.Log[0].ID).then(function (retData) {
+            getService.getData('/admin/students/call_log/json/call_log.json?id=' + $j('#id').html() + '&cat=' + $scope.Log).then(function (retData) {
                 retData.pop();
                 $scope.StudentLogs = retData;
 
@@ -37,7 +35,7 @@ define(['angular', 'components/shared/index'], function (angular) {
 			});
 			if($scope.missing == 0){
 				var dataString = $j(formID).serialize();
-                var postURL = '/admin/students/call_log/scripts/call_log.json?id=' + $j('#id').html() + '&cat=' + $scope.Log[0].ID;
+                var postURL = '/admin/students/call_log/json/call_log.json?id=' + $j('#id').html() + '&cat=' + $scope.Log;
 				postService.postData(postURL, dataString).then(function (retData) {
 					retData.pop();
 					$scope.StudentLogs = retData;
@@ -48,7 +46,7 @@ define(['angular', 'components/shared/index'], function (angular) {
 
         $scope.logDelete = function (formID) {
             var dataString = $j(formID).serialize();
-            var postURL = '/admin/students/call_log/scripts/call_log.json?dcid=' + $j('#id').html() + '&cat=' + $scope.Log[0].ID;
+            var postURL = '/admin/students/call_log/json/call_log.json?dcid=' + $j('#id').html() + '&cat=' + $scope.Log;
             postService.postData(postURL, dataString).then(function (retData) {
                 retData.pop();
                 $scope.StudentLogs = retData;
@@ -57,9 +55,8 @@ define(['angular', 'components/shared/index'], function (angular) {
         };
 
         //Open Dialog Control
-        $scope.openDialog = function (id, url) {
-            $rootScope.currentID = id;
-            $rootScope.currenturl = url;
+        $scope.openDialog = function (id) {
+            $rootScope.currenturl = 'logedit.html?logTypeId=' + $scope.Log + '&frn=008' + id;
             var dialogContent = '<div class="dialogContent hide"></div>';
             angular.element('body').append(dialogContent);
             $compile(dialogContent)($scope);
@@ -71,7 +68,7 @@ define(['angular', 'components/shared/index'], function (angular) {
         return {
             restrict: "C",
             templateUrl: function (element, args) {
-                return $rootScope.currenturl + $rootScope.currentID + '&rnd=' + Math.floor(Math.random() * Math.pow(2, 32));
+                return $rootScope.currenturl + '&rnd=' + Math.floor(Math.random() * Math.pow(2, 32));
             },
 
             link: function (scope, element, args) {

@@ -1,0 +1,14 @@
+{
+	"pages": [
+		{
+			"htmlID": "navKIBSDCallLogStudentPage",
+			"parentHTMLID": "navStudentBehaviorSection",
+			"title": "Call Log",
+			"pageURL": "/admin/students/call_log/call_log.html?frn=~(studentfrn)",
+			"sortOrder": "110",
+			"contextType": "student",
+			"requireContext": "student",
+			"version": "24.02.14"
+		}
+	]
+}

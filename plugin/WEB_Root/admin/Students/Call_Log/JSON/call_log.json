@@ -1,15 +1,18 @@
 [
 	~[tlist_sql;
     SELECT
-        l.id,
+        l.dcid,
         l.entry_time,
         l.entry_date,
         l.entry_author,
         l.entry,
-        s.abbreviation,
+        CASE 
+            WHEN l.schoolid = 0 THEN 'DIST'
+            ELSE s.abbreviation
+        END AS abbreviation,
         l.subject
     FROM LOG l 
-    JOIN SCHOOLS s
+    LEFT OUTER JOIN SCHOOLS s
         ON l.schoolid = s.school_number
     WHERE l.studentid = ~(gpv.id) AND l.logtypeid = ~(gpv.cat)]
   {
